@@ -22,6 +22,7 @@ import kg.App;
 import kg.geektech.intreface.ItemClick;
 import kg.geektech.postfragment.R;
 import kg.geektech.postfragment.databinding.FragmentPostBinding;
+import kg.geektech.postfragment.form.FormFragment;
 import kg.geektech.postfragment.models.Post;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -79,19 +80,22 @@ public class PostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.recycler.setAdapter(adapter);
-        App.api.getPosts().enqueue(new Callback<List<Post>>() {
-            @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    adapter.setPosts(response.body());
+
+
+            App.api.getPosts(36).enqueue(new Callback<List<Post>>() {
+                @Override
+                public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        adapter.setPosts(response.body());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
+                @Override
+                public void onFailure(Call<List<Post>> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+
         initListeners();
     }
 

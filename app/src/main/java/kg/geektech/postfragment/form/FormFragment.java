@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class FormFragment extends Fragment {
     private FragmentFormBinding binding;
     private static final int USER_ID = 2;
-    private static final int GROUP_ID = 36;
+    public static final int GROUP_ID = 36;
     private Post post2;
 
     public FormFragment() {
